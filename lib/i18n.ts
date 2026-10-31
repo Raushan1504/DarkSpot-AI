@@ -74,6 +74,33 @@ export interface TranslationDict {
   progressText: string;
   verifyWith: string;
   priority: string;
+  gapLabel: string;
+  blindSpotSeverity: {
+    High: string;
+    Medium: string;
+    Low: string;
+  };
+  docStatus: {
+    "Missing Requirement": string;
+    "Conflicting Rule": string;
+    Clear: string;
+  };
+  riskLevel: {
+    High: string;
+    Medium: string;
+    Low: string;
+  };
+  badgeOmissions: string;
+  badgeConflicts: string;
+  badgeConsensus: string;
+  epistemicStandard: string;
+  diffSubtitle: string;
+  crossDocDiffing: string;
+  highConfidence: string;
+  riskMatrix: string;
+  confirmedOf: string;
+  of: string;
+  risk: string;
 }
 
 export const TRANSLATIONS: Record<SupportedUiLang, TranslationDict> = {
@@ -157,6 +184,33 @@ export const TRANSLATIONS: Record<SupportedUiLang, TranslationDict> = {
     progressText: "Verification Progress:",
     verifyWith: "Verify with:",
     priority: "Priority",
+    gapLabel: "Gap #",
+    blindSpotSeverity: {
+      High: "HIGH SEVERITY BLIND SPOT",
+      Medium: "MEDIUM SEVERITY BLIND SPOT",
+      Low: "LOW SEVERITY BLIND SPOT",
+    },
+    docStatus: {
+      "Missing Requirement": "Missing Requirement",
+      "Conflicting Rule": "Conflicting Rule",
+      Clear: "Clear",
+    },
+    riskLevel: {
+      High: "High Risk",
+      Medium: "Medium Risk",
+      Low: "Low Risk",
+    },
+    badgeOmissions: "Omissions",
+    badgeConflicts: "Conflicts",
+    badgeConsensus: "Consensus",
+    epistemicStandard: "Epistemic Humility Standard Active",
+    diffSubtitle: "Side-by-side claim conflict analysis with verbatim quotes",
+    crossDocDiffing: "Cross-Document Diffing",
+    highConfidence: "High Epistemic Confidence",
+    riskMatrix: "Prerequisite Risk Matrix",
+    confirmedOf: "confirmed",
+    of: "of",
+    risk: "Risk",
   },
   fr: {
     navSubtitle: "Auditeur d'Angles Morts et de Contradictions Épistémiques",
@@ -238,6 +292,33 @@ export const TRANSLATIONS: Record<SupportedUiLang, TranslationDict> = {
     progressText: "Progression de la Vérification :",
     verifyWith: "À vérifier auprès de :",
     priority: "Priorité",
+    gapLabel: "Angle mort #",
+    blindSpotSeverity: {
+      High: "ANGLE MORT DE HAUTE GRAVITÉ",
+      Medium: "ANGLE MORT DE GRAVITÉ MOYENNE",
+      Low: "ANGLE MORT DE FAIBLE GRAVITÉ",
+    },
+    docStatus: {
+      "Missing Requirement": "Condition Manquante",
+      "Conflicting Rule": "Règle Contradictoire",
+      Clear: "Conforme",
+    },
+    riskLevel: {
+      High: "Risque Élevé",
+      Medium: "Risque Moyen",
+      Low: "Faible Risque",
+    },
+    badgeOmissions: "Omissions",
+    badgeConflicts: "Conflits",
+    badgeConsensus: "Consensus",
+    epistemicStandard: "Norme d'Humilité Épistémique Active",
+    diffSubtitle: "Analyse comparative textuelle des conflits de déclarations",
+    crossDocDiffing: "Diff Inter-Documents",
+    highConfidence: "Haute Confiance Épistémique",
+    riskMatrix: "Matrice des Risques Prérequis",
+    confirmedOf: "confirmés",
+    of: "sur",
+    risk: "Risque",
   },
   es: {
     navSubtitle: "Auditor de Brechas de Información y Contradicciones",
@@ -319,6 +400,33 @@ export const TRANSLATIONS: Record<SupportedUiLang, TranslationDict> = {
     progressText: "Progreso de Verificación:",
     verifyWith: "Verificar con:",
     priority: "Prioridad",
+    gapLabel: "Brecha #",
+    blindSpotSeverity: {
+      High: "PUNTO CIEGO DE ALTA GRAVEDAD",
+      Medium: "PUNTO CIEGO DE GRAVEDAD MEDIA",
+      Low: "PUNTO CIEGO DE BAJA GRAVEDAD",
+    },
+    docStatus: {
+      "Missing Requirement": "Requisito Omitido",
+      "Conflicting Rule": "Norma en Conflicto",
+      Clear: "Conforme",
+    },
+    riskLevel: {
+      High: "Riesgo Alto",
+      Medium: "Riesgo Medio",
+      Low: "Riesgo Bajo",
+    },
+    badgeOmissions: "Omisiones",
+    badgeConflicts: "Conflictos",
+    badgeConsensus: "Consenso",
+    epistemicStandard: "Estándar de Humildad Epistémica Activo",
+    diffSubtitle: "Análisis comparativo de discrepancias con citas textuales",
+    crossDocDiffing: "Comparación Inter-Documental",
+    highConfidence: "Alta Confianza Epistémica",
+    riskMatrix: "Matriz de Riesgo de Requisitos",
+    confirmedOf: "confirmados",
+    of: "de",
+    risk: "Riesgo",
   },
   de: {
     navSubtitle: "Auditor für Epistemische Informationslücken & Widersprüche",
@@ -400,6 +508,33 @@ export const TRANSLATIONS: Record<SupportedUiLang, TranslationDict> = {
     progressText: "Prüffortschritt:",
     verifyWith: "Zu prüfen bei:",
     priority: "Priorität",
+    gapLabel: "Lücke #",
+    blindSpotSeverity: {
+      High: "HOHE SCHWERE: BLINDER FLECK",
+      Medium: "MITTLERE SCHWERE: BLINDER FLECK",
+      Low: "GERINGE SCHWERE: BLINDER FLECK",
+    },
+    docStatus: {
+      "Missing Requirement": "Fehlende Anforderung",
+      "Conflicting Rule": "Widersprüchliche Regel",
+      Clear: "Eindeutig",
+    },
+    riskLevel: {
+      High: "Hohes Risiko",
+      Medium: "Mittleres Risiko",
+      Low: "Geringes Risiko",
+    },
+    badgeOmissions: "Auslassungen",
+    badgeConflicts: "Konflikte",
+    badgeConsensus: "Konsens",
+    epistemicStandard: "Epistemischer Demutsstandard Aktiv",
+    diffSubtitle: "Direkter Textvergleich von widersprüchlichen Aussagen",
+    crossDocDiffing: "Dokumentenübergreifender Abgleich",
+    highConfidence: "Hohe Epistemische Zuverlässigkeit",
+    riskMatrix: "Risikomatrix der Voraussetzungen",
+    confirmedOf: "bestätigt",
+    of: "von",
+    risk: "Risiko",
   },
   hi: {
     navSubtitle: "सूचना अंतराल एवं अंतर्विरोध विश्लेषक (डार्क स्पॉट AI)",
@@ -476,5 +611,32 @@ export const TRANSLATIONS: Record<SupportedUiLang, TranslationDict> = {
     progressText: "सत्यापन प्रगति:",
     verifyWith: "पुष्टि यहाँ करें:",
     priority: "प्राथमिकता",
+    gapLabel: "अंतराल #",
+    blindSpotSeverity: {
+      High: "अति गंभीर डार्क स्पॉट",
+      Medium: "मध्यम गंभीर डार्क स्पॉट",
+      Low: "सामान्य डार्क स्पॉट",
+    },
+    docStatus: {
+      "Missing Requirement": "गायब पूर्वशर्त",
+      "Conflicting Rule": "विरोधाभासी नियम",
+      Clear: "स्पष्ट",
+    },
+    riskLevel: {
+      High: "उच्च जोखिम",
+      Medium: "मध्यम जोखिम",
+      Low: "कम जोखिम",
+    },
+    badgeOmissions: "चूकें",
+    badgeConflicts: "विवाद",
+    badgeConsensus: "सहमति",
+    epistemicStandard: "ज्ञानमीमांसक मानक सक्रिय",
+    diffSubtitle: "स्रोतों के मूल कथनों का सीधा तुलनात्मक विश्लेषण",
+    crossDocDiffing: "दस्तावेज़ तुलना",
+    highConfidence: "उच्च प्रमाणिकता",
+    riskMatrix: "जोखिम मैट्रिक्स",
+    confirmedOf: "पुष्टि की गई",
+    of: "में से",
+    risk: "जोखिम",
   },
 };

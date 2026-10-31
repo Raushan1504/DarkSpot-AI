@@ -244,7 +244,7 @@ export function AuditDashboard({ result, onOpenInquiryModal, dict }: AuditDashbo
               {dict.gapsSubtitle}
             </span>
             <span className="text-[11px] font-mono text-zinc-400">
-              Epistemic Humility Standard Active
+              {dict.epistemicStandard}
             </span>
           </div>
 
@@ -277,7 +277,7 @@ export function AuditDashboard({ result, onOpenInquiryModal, dict }: AuditDashbo
                           variant="outline"
                           className={`text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 ${badgeColor}`}
                         >
-                          {gap.severity} Severity Blind Spot
+                          {dict.blindSpotSeverity[gap.severity] || `${gap.severity} Severity Blind Spot`}
                         </Badge>
 
                         {/* MANDATORY SHINCHAN HACKATHON EPISTEMIC HUMILITY BADGE */}
@@ -291,7 +291,7 @@ export function AuditDashboard({ result, onOpenInquiryModal, dict }: AuditDashbo
                       </div>
 
                       <span className="text-xs font-mono text-zinc-400">
-                        Gap #{index + 1}
+                        {dict.gapLabel} {index + 1}
                       </span>
                     </div>
 
@@ -360,10 +360,10 @@ export function AuditDashboard({ result, onOpenInquiryModal, dict }: AuditDashbo
           <div className="flex items-center justify-between text-xs text-zinc-400 px-1">
             <span className="flex items-center gap-1.5">
               <ArrowRightLeft className="w-3.5 h-3.5 text-amber-400" />
-              Side-by-side claim conflict analysis with verbatim quotes
+              {dict.diffSubtitle}
             </span>
             <span className="text-[11px] font-mono text-zinc-400">
-              Cross-Document Diffing
+              {dict.crossDocDiffing}
             </span>
           </div>
 
@@ -484,7 +484,7 @@ export function AuditDashboard({ result, onOpenInquiryModal, dict }: AuditDashbo
               variant="outline"
               className="bg-emerald-500/10 text-emerald-400 border-emerald-500/30 text-[10px]"
             >
-              High Epistemic Confidence
+              {dict.highConfidence}
             </Badge>
           </div>
 
@@ -538,7 +538,7 @@ export function AuditDashboard({ result, onOpenInquiryModal, dict }: AuditDashbo
               {dict.documentsSubtitle}
             </span>
             <span className="text-[11px] font-mono text-zinc-400">
-              Prerequisite Risk Matrix
+              {dict.riskMatrix}
             </span>
           </div>
 
@@ -571,13 +571,13 @@ export function AuditDashboard({ result, onOpenInquiryModal, dict }: AuditDashbo
                         variant="outline"
                         className={`text-[11px] font-medium px-2 py-0.5 ${statusBadge}`}
                       >
-                        {doc.status}
+                        {dict.docStatus[doc.status as keyof typeof dict.docStatus] || doc.status}
                       </Badge>
                       <Badge
                         variant="secondary"
                         className="bg-zinc-900 text-zinc-400 text-[10px]"
                       >
-                        {doc.riskLevel} Risk
+                        {dict.riskLevel[doc.riskLevel as keyof typeof dict.riskLevel] || `${doc.riskLevel} ${dict.risk}`}
                       </Badge>
                     </div>
                   </div>

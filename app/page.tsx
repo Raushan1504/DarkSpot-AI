@@ -37,6 +37,7 @@ const UI_LANGUAGES: { key: SupportedUiLang; label: string; flag: string }[] = [
 const defaultFixture = DEMO_FIXTURES.daad_wise;
 
 export default function Home() {
+  const [activeFixtureId, setActiveFixtureId] = useState<string>("daad_wise");
   const [topic, setTopic] = useState<string>(() => defaultFixture.topic);
   const [urls, setUrls] = useState<string[]>(() => defaultFixture.urls);
   const [rawText, setRawText] = useState<string>(() => defaultFixture.rawText);
@@ -49,8 +50,9 @@ export default function Home() {
   // Active translation dictionary
   const dict = TRANSLATIONS[uiLang];
 
-  const handleLoadFixture = (fixtureId: string = "daad_wise") => {
-    const fixture = getDemoFixture(fixtureId);
+  const handleLoadFixture = (fixtureId: string = "daad_wise", lang: SupportedUiLang = uiLang) => {
+    setActiveFixtureId(fixtureId);
+    const fixture = getDemoFixture(fixtureId, lang);
     setTopic(fixture.topic);
     setUrls([...fixture.urls]);
     setRawText(fixture.rawText);
@@ -81,6 +83,7 @@ export default function Home() {
           topic,
           urls: filteredUrls,
           rawText,
+          language: uiLang,
         }),
       });
 
@@ -95,10 +98,10 @@ export default function Home() {
       });
     } catch (err) {
       console.warn("Audit call error, seamlessly falling back to offline demo fixture:", err);
-      const fallback = getDemoFixture("daad_wise").result;
+      const fallback = getDemoFixture(activeFixtureId, uiLang).result;
       setAuditResult(fallback);
       toast.warning("Demonstration Mode (Offline Fallback)", {
-        description: "Network unavailable. Loaded verified DAAD WISE 2026 epistemic audit fixture.",
+        description: "Network unavailable. Loaded verified 2026 epistemic audit fixture.",
       });
     } finally {
       setIsLoading(false);
@@ -169,8 +172,12 @@ export default function Home() {
                       key={lang.key}
                       type="button"
                       onClick={() => {
-                        setUiLang(lang.key);
+                        const newLang = lang.key;
+                        setUiLang(newLang);
                         setIsLangDropdownOpen(false);
+                        const fixture = getDemoFixture(activeFixtureId, newLang);
+                        setTopic(fixture.topic);
+                        setAuditResult(fixture.result);
                         toast.info(`Language switched to ${lang.label}`);
                       }}
                       className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
@@ -327,7 +334,7 @@ export default function Home() {
                 <div className="text-2xl font-black text-red-400 flex items-center gap-2">
                   <span>{auditResult.detectedGaps.length}</span>
                   <Badge variant="outline" className="text-[10px] border-red-500/30 text-red-400">
-                    Omissions
+                    {dict.badgeOmissions}
                   </Badge>
                 </div>
               </div>
@@ -339,7 +346,7 @@ export default function Home() {
                 <div className="text-2xl font-black text-amber-400 flex items-center gap-2">
                   <span>{auditResult.contradictions.length}</span>
                   <Badge variant="outline" className="text-[10px] border-amber-500/30 text-amber-400">
-                    Conflicts
+                    {dict.badgeConflicts}
                   </Badge>
                 </div>
               </div>
@@ -351,7 +358,7 @@ export default function Home() {
                 <div className="text-2xl font-black text-emerald-400 flex items-center gap-2">
                   <span>{auditResult.verifiedFacts.length}</span>
                   <Badge variant="outline" className="text-[10px] border-emerald-500/30 text-emerald-400">
-                    Consensus
+                    {dict.badgeConsensus}
                   </Badge>
                 </div>
               </div>
@@ -398,6 +405,7 @@ export default function Home() {
             onClose={() => setIsInquiryModalOpen(false)}
             inquiryDraft={auditResult.inquiryDraft}
             topic={auditResult.topic}
+            activeLang={uiLang}
           />
         )}
       </main>

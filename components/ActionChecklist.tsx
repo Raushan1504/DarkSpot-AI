@@ -90,7 +90,7 @@ export function ActionChecklist({
         <div className="space-y-1.5">
           <div className="flex items-center justify-between text-xs">
             <span className="font-medium text-zinc-300">
-              {dict.progressText} {completedCount} of {total} confirmed
+              {dict.progressText} {completedCount} {dict.of} {total} {dict.confirmedOf}
             </span>
             <span className="font-mono font-bold text-amber-400">
               {progressPercent}%

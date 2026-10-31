@@ -45,6 +45,7 @@ interface InquiryModalProps {
     };
   };
   topic: string;
+  activeLang?: LangKey;
 }
 
 type LangKey = "en" | "fr" | "es" | "de" | "hi";
@@ -62,8 +63,9 @@ export function InquiryModal({
   onClose,
   inquiryDraft,
   topic,
+  activeLang = "en",
 }: InquiryModalProps) {
-  const [selectedLang, setSelectedLang] = useState<LangKey>("en");
+  const [selectedLang, setSelectedLang] = useState<LangKey>(activeLang);
   const [recipient, setRecipient] = useState<string>(
     inquiryDraft.recipientPlaceholder || "Official Coordinator / Helpdesk"
   );

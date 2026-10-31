@@ -2,15 +2,34 @@ import { NextRequest, NextResponse } from "next/server";
 import { AuditResultSchema, AuditResult } from "@/lib/schema";
 import { scrapeUrl } from "@/lib/scrapper";
 import { DAAD_WISE_DEMO_RESULT, getDemoFixture } from "@/lib/demoData";
+import { SupportedUiLang } from "@/lib/i18n";
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { generateObject } from "ai";
 
 export const maxDuration = 60;
 
+export async function GET() {
+  return NextResponse.json({
+    status: "active",
+    service: "DarkSpot AI - Epistemic Information Gap & Contradiction Auditor API",
+    version: "2026.1",
+    endpoints: {
+      postAudit: {
+        method: "POST",
+        description: "Submit topic, URLs, and raw text for deep epistemic audit.",
+        bodyFormat: "{ topic: string, urls?: string[], rawText?: string, language?: string }",
+      },
+    },
+  });
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { topic, urls = [], rawText = "" } = body;
+    const { topic, urls = [], rawText = "", language = "en" } = body;
+    const targetLang: SupportedUiLang = (
+      ["en", "fr", "es", "de", "hi"].includes(language) ? language : "en"
+    ) as SupportedUiLang;
 
     if (!topic || typeof topic !== "string") {
       return NextResponse.json(
@@ -114,12 +133,12 @@ Make sure all source IDs match the provided source IDs.
     }
 
     const lowerTopic = topic.toLowerCase();
-    if (lowerTopic.includes("daad") || lowerTopic.includes("wise") || lowerTopic.includes("germany")) {
-      return NextResponse.json(DAAD_WISE_DEMO_RESULT);
+    if (lowerTopic.includes("daad") || lowerTopic.includes("wise") || lowerTopic.includes("germany") || lowerTopic.includes("alemania")) {
+      return NextResponse.json(getDemoFixture("daad_wise", targetLang).result);
     }
 
-    if (lowerTopic.includes("france") || lowerTopic.includes("eiffel")) {
-      return NextResponse.json(getDemoFixture("campus_france").result);
+    if (lowerTopic.includes("france") || lowerTopic.includes("eiffel") || lowerTopic.includes("francia")) {
+      return NextResponse.json(getDemoFixture("campus_france", targetLang).result);
     }
 
     const dynamicResult: AuditResult = {
@@ -127,28 +146,28 @@ Make sure all source IDs match the provided source IDs.
       analyzedSources:
         scrapedSources.length > 0
           ? scrapedSources.map((s, idx) => ({
-              id: s.id,
-              title: s.title,
-              url: s.url,
-              detectedDate: s.detectedDate || "2025-10-01",
-              isOutdated: idx > 0,
-            }))
+            id: s.id,
+            title: s.title,
+            url: s.url,
+            detectedDate: s.detectedDate || "2025-10-01",
+            isOutdated: idx > 0,
+          }))
           : [
-              {
-                id: "src-1",
-                title: `${topic} - Official Guidelines`,
-                url: "https://official-portal.org/guidelines-2026",
-                detectedDate: "2025-11-10",
-                isOutdated: false,
-              },
-              {
-                id: "src-2",
-                title: `${topic} - Student Information Forum`,
-                url: "https://admissions-forum.org/advice-thread",
-                detectedDate: "2023-09-12",
-                isOutdated: true,
-              },
-            ],
+            {
+              id: "src-1",
+              title: `${topic} - Official Guidelines`,
+              url: "https://official-portal.org/guidelines-2026",
+              detectedDate: "2025-11-10",
+              isOutdated: false,
+            },
+            {
+              id: "src-2",
+              title: `${topic} - Student Information Forum`,
+              url: "https://admissions-forum.org/advice-thread",
+              detectedDate: "2023-09-12",
+              isOutdated: true,
+            },
+          ],
       verifiedFacts: [
         {
           fact: `Core eligibility criteria and baseline application objectives are recognized for "${topic}".`,
