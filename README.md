@@ -64,7 +64,7 @@ Contrasts conflicting statements across sources with exact verbatim citations an
   * **What question must be answered:** Concrete prompt to ask the granting committee.
 * **Epistemic Humility Standard:** Explicitly labelled as `"Potential Signal: Unmentioned in Any Source"` to communicate uncertainty responsibly.
 
-### ⇄ 2. Conflicting Claims (Verbatim Diff View)
+### 2. Conflicting Claims (Verbatim Diff View)
 * Pinpoints exact numerical, deadline, or policy conflicts across sources.
 * Renders a split side-by-side comparison with verbatim quotes from **Source A** vs. **Source B**.
 * Provides a **Divergence Diagnosis** explaining *why* the conflict exists (e.g., outdated 2023 pre-inflation rates vs. active 2026 circular guidelines).
