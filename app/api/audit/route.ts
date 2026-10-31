@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
         const scraped = await Promise.race([
           scrapeUrl(url),
           new Promise<never>((_, reject) =>
-            setTimeout(() => reject(new Error("Scraping timeout")), 8000)
+            setTimeout(() => reject(new Error("Scraping timeout")), 16000)
           ),
         ]);
         scrapedSources.push({
@@ -74,9 +74,9 @@ export async function POST(req: NextRequest) {
     if (rawText && rawText.trim().length > 0) {
       scrapedSources.push({
         id: `src-raw`,
-        title: "User Provided Circular / Direct Excerpt",
-        url: "internal://direct-text-circular",
-        content: rawText.slice(0, 6000),
+        title: "Official Government Circular / Policy Excerpt",
+        url: "internal://direct-policy-circular",
+        content: rawText.slice(0, 8000),
       });
     }
 

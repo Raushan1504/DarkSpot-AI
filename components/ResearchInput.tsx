@@ -259,27 +259,60 @@ export function ResearchInput({
           </div>
         </div>
 
-        {/* Alternative Raw Text Accordion */}
-        <Accordion className="border border-zinc-800/80 rounded-xl bg-zinc-900/40 px-4">
+        {/* Alternative Raw Text Accordion (Primary recommendation for Government Portals & PDFs) */}
+        <Accordion className="border border-purple-500/30 rounded-xl bg-purple-950/10 px-4">
           <AccordionItem value="raw-text" className="border-none">
-            <AccordionTrigger className="py-3 text-xs font-medium text-zinc-300 hover:text-zinc-100 hover:no-underline">
-              <span className="flex items-center gap-2">
-                <FileText className="w-4 h-4 text-purple-400" />
-                {dict.rawTextAccordion}
-              </span>
+            <AccordionTrigger className="py-3 text-xs font-medium text-zinc-200 hover:text-white hover:no-underline">
+              <div className="flex flex-wrap items-center justify-between w-full pr-2 gap-2">
+                <span className="flex items-center gap-2 font-semibold text-zinc-100">
+                  <FileText className="w-4 h-4 text-purple-400" />
+                  {dict.rawTextAccordion}
+                </span>
+                <div className="flex items-center gap-2">
+                  <Badge
+                    variant="outline"
+                    className="border-purple-500/40 bg-purple-500/20 text-purple-300 text-[10px] font-semibold hidden sm:inline-flex"
+                  >
+                    Zero 403 Errors • Gov Portals & PDFs
+                  </Badge>
+                  {rawText && rawText.trim().length > 0 && (
+                    <Badge
+                      variant="secondary"
+                      className="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[10px] font-mono"
+                    >
+                      {rawText.length} chars loaded
+                    </Badge>
+                  )}
+                </div>
+              </div>
             </AccordionTrigger>
-            <AccordionContent className="pt-1 pb-4">
-              <p className="text-xs text-zinc-400 mb-2">
-                {dict.rawTextDesc}
-              </p>
-              <Textarea
-                placeholder={dict.rawTextPlaceholder}
-                value={rawText}
-                onChange={(e) => setRawText(e.target.value)}
-                disabled={isLoading}
-                rows={4}
-                className="bg-zinc-950/90 border-zinc-800 text-zinc-200 text-xs font-mono rounded-lg focus-visible:ring-purple-500/40 resize-y"
-              />
+            <AccordionContent className="pt-1 pb-4 space-y-2">
+              <div className="p-2.5 rounded-lg bg-zinc-950/70 border border-purple-500/20 text-xs text-zinc-300 leading-relaxed">
+                <strong className="text-purple-300">Recommended for Government Sites (.gov, .nic.in, .bund.de):</strong>{" "}
+                {dict.rawTextDesc}{" "}
+                <span className="text-zinc-400">
+                  Select all text (Ctrl+A) from the official PDF notice or circular and paste it directly below. This completely avoids 403 firewalls and bot challenges.
+                </span>
+              </div>
+              <div className="relative">
+                <Textarea
+                  placeholder={dict.rawTextPlaceholder}
+                  value={rawText}
+                  onChange={(e) => setRawText(e.target.value)}
+                  disabled={isLoading}
+                  rows={5}
+                  className="bg-zinc-950/90 border-zinc-800 text-zinc-200 text-xs font-mono rounded-lg focus-visible:ring-purple-500/40 resize-y"
+                />
+                {rawText && (
+                  <button
+                    type="button"
+                    onClick={() => setRawText("")}
+                    className="absolute right-2 bottom-2 px-2 py-0.5 rounded text-[10px] bg-zinc-800 text-zinc-400 hover:text-zinc-200 hover:bg-zinc-700"
+                  >
+                    Clear Text
+                  </button>
+                )}
+              </div>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
