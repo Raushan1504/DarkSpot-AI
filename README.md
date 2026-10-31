@@ -100,20 +100,8 @@ Contrasts conflicting statements across sources with exact verbatim citations an
 
 ---
 
-## 4. Alignment with Hackathon Judging Criteria (10/10)
 
-| Evaluation Area | Weight | How DarkSpot AI Delivers |
-|---|:---:|---|
-| **Problem Understanding & Relevance** | **15% (1.5)** | Tackles the real-world *"closed-world"* failure mode of search and LLMs in high-stakes scholarship and visa applications. |
-| **Innovation & Originality** | **20% (2.0)** | Goes far beyond summarization: detects what is *absent*, generates side-by-side verbatim conflict diffs, and flags temporal drift. |
-| **Working Prototype & Functionality** | **25% (2.5)** | Fully functional end-to-end pipeline: dynamic URL inputs, auto-discovery, 4-tab dashboard, interactive checklist, and official inquiry generator. |
-| **Technical Implementation** | **15% (1.5)** | Built with Next.js 16 (App Router), TypeScript strict mode (zero `any`), Zod schema validation, and two-tier scraper with Jina Reader fallback. |
-| **Evidence, Accuracy & Transparency** | **15% (1.5)** | Every finding is linked to source IDs; outputs carry epistemic humility badges (`Potential Signal`), preventing hallucinated false certainty. |
-| **Presentation & Live Demo** | **10% (1.0)** | 1-click *"Load Demo Fixture"* guarantees a zero-crash, responsive presentation in all 5 languages, even in offline environments. |
-
----
-
-## 5. Technology Stack
+## 4. Technology Stack
 
 - **Frontend & App Framework:** Next.js 16.4.3 (App Router, Turbopack/Webpack), React 19, TypeScript
 - **Styling & UI:** Tailwind CSS v4, Base UI, Lucide Icons, Glassmorphism design tokens
@@ -124,7 +112,7 @@ Contrasts conflicting statements across sources with exact verbatim citations an
 
 ---
 
-## 6. Quick Start & Local Setup
+## 5. Quick Start & Local Setup
 
 ### Prerequisites
 - Node.js 18.17+ or Node.js 20+
@@ -163,7 +151,7 @@ npx next build --webpack
 
 ---
 
-## 7. Recommended Hackathon Demo Flow (Under 2 Minutes)
+## 6. Recommended  Demo Flow (Under 2 Minutes)
 
 1. **Load Pre-Configured Scenario:**
    Click the **"Load Demo Fixture"** button in the header. Notice the DAAD WISE 2026 intake guidelines, contrasting URLs, and circular excerpts populate immediately.
@@ -180,7 +168,7 @@ npx next build --webpack
 
 ---
 
-## 8. Epistemic Humility & Ethical AI Declaration
+## 7. Epistemic Humility & Ethical AI Declaration
 
 DarkSpot AI is built on the core principle of **epistemic transparency**:
 - AI findings are explicitly presented as **potential signals and omission flags to guide human verification**, never as absolute legal determinations.
